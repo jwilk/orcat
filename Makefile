@@ -14,6 +14,14 @@ install: orcat
 	install -d $(DESTDIR)$(bindir)
 	install -m755 $(<) $(DESTDIR)$(bindir)/
 
+.PHONY: test
+test: orcat
+	prove -v
+
+.PHONY: test-installed
+test-installed: $(or $(shell command -v orcat;),$(bindir)/orcat)
+	ORCAT_TEST_TARGET=orcat prove
+
 orcat: orcat.rs
 	rustc -g -O $(<)
 
