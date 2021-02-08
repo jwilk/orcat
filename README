@@ -1,0 +1,18 @@
+.. code:: console
+
+   $ orcat --help
+   Usage: orcat FILE [FILE...]
+
+   $ hd f1
+   00000000  46 4f 4f                                          |FOO|
+   00000003
+
+   $ hd f2
+   00000000  00 00 62 61 72                                    |..bar|
+   00000005
+
+   $ orcat f1 f2 | hd
+   00000000  46 4f 6f 61 72                                    |FOoar|
+   00000005
+
+.. vim:ft=rst ts=3 sts=3 sw=3 et
