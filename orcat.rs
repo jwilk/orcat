@@ -15,13 +15,13 @@ use std::process::exit;
 
 fn usage()
 {
-    println!("Usage: {} PATH [PATH...]", PROG);
+    println!("Usage: {} FILE [FILE...]", PROG);
     exit(0);
 }
 
 fn usage_error()
 {
-    eprintln!("Usage: {} PATH [PATH...]", PROG);
+    eprintln!("Usage: {} FILE [FILE...]", PROG);
     exit(1);
 }
 
