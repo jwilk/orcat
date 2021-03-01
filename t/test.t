@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Copyright © 2021 Jakub Wilk <jwilk@jwilk.net>
+# SPDX-License-Identifier: MIT
+
 set -e -u
 echo 1..2
 base="${0%/*}/.."
