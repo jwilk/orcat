@@ -1,0 +1,42 @@
+name: CI
+on:
+- push
+- pull_request
+jobs:
+  main:
+    strategy:
+      matrix:
+        os:
+        - ubuntu-18.04
+        - ubuntu-20.04
+        - ubuntu-latest
+    runs-on: ${{matrix.os}}
+    steps:
+    - uses: actions/checkout@v2
+    - name: install packaged Rust compiler
+      run: |
+        rm -rf /usr/share/rust/.cargo/bin/
+        sudo apt-get update
+        sudo apt-get install rustc
+      if: ${{matrix.os != 'ubuntu-latest'}}
+    - name: check Rust compiler version
+      run: |
+        type rustc
+        rustc --version
+    - run:
+        make
+    - run:
+        make test
+    - run:
+        make install PREFIX=~/.local
+    - run:
+        make clean
+    - run:
+        make test-installed
+    - name: check README syntax
+      run: |
+        pip install pygments restructuredtext-lint
+        rst-lint --level=info --encoding=UTF-8 README
+
+# vim:ts=2 sts=2 sw=2 et
+
