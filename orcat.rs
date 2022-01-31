@@ -55,7 +55,7 @@ impl File {
     }
 
     fn open(path: &OsStr) -> io::Result<File> {
-        return Ok({
+        Ok({
             if path == "-" {
                 File::Stdin(io::stdin())
             } else {
@@ -73,7 +73,7 @@ impl File {
             }
             asize += size;
         }
-        return Ok(asize);
+        Ok(asize)
     }
 
 }
@@ -81,7 +81,7 @@ impl File {
 impl io::Read for File {
 
     fn read(&mut self, buf: &mut [u8]) -> io::Result<usize> {
-        return match *self {
+        match *self {
             File::Stdin(ref mut file) => file.read(buf),
             File::Fs(ref mut file) => file.read(buf),
             File::None => unreachable!(),
