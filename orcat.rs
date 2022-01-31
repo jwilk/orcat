@@ -25,14 +25,14 @@ fn usage_error()
     exit(1);
 }
 
-fn io_error(path: &OsStr, error: &io::Error) -> ()
+fn io_error(path: &OsStr, error: &io::Error)
 {
     let path = path.to_string_lossy();
     eprintln!("{}: {}: {}", PROG, path, error);
     exit(1);
 }
 
-fn stdio_error(error: &io::Error) -> ()
+fn stdio_error(error: &io::Error)
 {
     eprintln!("{}: {}", PROG, error);
     exit(1);
