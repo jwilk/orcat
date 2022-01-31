@@ -48,10 +48,7 @@ impl File {
 
     fn is_none(&self) -> bool
     {
-        return match *self {
-            File::None => true,
-            _ => false,
-        }
+        matches!(*self, File::None)
     }
 
     fn open(path: &OsStr) -> io::Result<File> {
