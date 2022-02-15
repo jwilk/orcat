@@ -23,15 +23,20 @@ jobs:
       run: |
         type rustc
         rustc --version
-    - run:
+    - name: build
+      run:
         make
-    - run:
+    - name: run tests
+      run:
         make test
-    - run:
+    - name: instal
+      run:
         make install PREFIX=~/.local
-    - run:
+    - name: clean up
+      run:
         make clean
-    - run:
+    - name: run post-install tests
+      run:
         make test-installed
     - name: check README syntax
       run: |
