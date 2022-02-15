@@ -17,6 +17,7 @@ jobs:
       run: |
         rm -rf /usr/share/rust/.cargo/bin/
         sudo apt-get update
+        printf 'Apt::Install-Recommends "false";\n' | sudo tee -a /etc/apt/apt.conf
         sudo apt-get install rustc
       if: ${{matrix.os != 'ubuntu-latest'}}
     - name: check Rust compiler version
